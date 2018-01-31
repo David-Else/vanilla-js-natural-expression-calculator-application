@@ -1,0 +1,54 @@
+/*
+-----------------------------------------------------------
+This stylesheet uses the BEM front-end naming methodology
+
+http://getbem.com/naming/
+
+.block {}
+.block__element {}
+.block--modifier {}
+-----------------------------------------------------------
+*/
+
+.natural-expression-generator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  background: linear-gradient(to top, #27cda5, #1b8d71);
+  color: white;
+}
+
+.natural-expression-generator__gender-box {
+  width: 75%;
+  padding: 15px;
+  background-color: rgb(16, 167, 212);
+  cursor: pointer;
+  user-select: none;
+}
+
+.natural-expression-generator__gender-box--color {
+  background-color: rgb(235, 127, 147);
+}
+
+.natural-expression-generator p {
+  color: #4f2a0f;
+}
+
+.natural-expression-generator input {
+  margin: 10px;
+  padding: 0;
+}
+
+#results p {
+  /* padding: 10px; */
+  margin: 0;
+}
+
+.example {
+  display: flex;
+  transition: all 0.5s;
+  user-select: none;
+  background: linear-gradient(to bottom, white, black);
+}
