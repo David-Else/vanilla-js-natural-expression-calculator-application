@@ -2784,6 +2784,7 @@ const thirdNumberArray = [
 ];
 
 let genderChosen = 'none-chosen';
+let isDateSelected = false;
 
 //
 // A counter to see how many times the app has been used
@@ -2805,13 +2806,15 @@ genderBox.textContent = 'Click here to choose your gender';
 
 
 function toggleGenderBox() {
-  genderBox.classList.toggle('natural-expression-generator__gender-box--color');
-  if (genderChosen === 'M') {
-    genderChosen = 'F';
-    genderBox.textContent = 'Female';
-  } else {
-    genderChosen = 'M';
-    genderBox.textContent = 'Male';
+  if (isDateSelected === false) {
+    genderBox.classList.toggle('natural-expression-generator__gender-box--color');
+    if (genderChosen === 'M') {
+      genderChosen = 'F';
+      genderBox.textContent = 'Female';
+    } else {
+      genderChosen = 'M';
+      genderBox.textContent = 'Male';
+    }
   }
 }
 
@@ -2908,35 +2911,37 @@ function findThirdNumber(primaryNumber, secondNumber) {
   return thirdNumberArray[--secondNumber][--primaryNumber];
 }
 
+function calculateNaturalExpression(selectedDates) {
+  const naturalExpressionYearOfBirth = calculateYear(selectedDates);
+  const monthOfBirth = selectedDates[0].getMonth();
+  const primaryNumber = findPrimaryNumber(genderChosen, naturalExpressionYearOfBirth);
+  const secondNumber = findSecondNumber(genderChosen, primaryNumber, monthOfBirth);
+  const thirdNumber = findThirdNumber(primaryNumber, secondNumber);
+  const duality = findDuality(genderChosen, primaryNumber);
+  const complexity = findComplexity(genderChosen, primaryNumber);
+  increaseUseCounter();
+  outputToDOM({
+    naturalExpressionYearOfBirth,
+    duality,
+    complexity,
+    primaryNumber,
+    secondNumber,
+    thirdNumber,
+  });
+  // const mask = document.getElementById('mask');
+  // mask.classList.add('natural-expression-generator--mask');
+  document.getElementById('natural-expression-generator--mask').style.display = 'block';
+}
+
 //
 // Run the main program
 //
-function calculateNaturalExpression() {
-  const inputDate = flatpickr$1('#demo', {
-    onChange(selectedDates) {
-      if (genderChosen !== 'none-chosen') {
-        const naturalExpressionYearOfBirth = calculateYear(selectedDates);
-        const monthOfBirth = selectedDates[0].getMonth();
-        const primaryNumber = findPrimaryNumber(genderChosen, naturalExpressionYearOfBirth);
-        const secondNumber = findSecondNumber(genderChosen, primaryNumber, monthOfBirth);
-        const thirdNumber = findThirdNumber(primaryNumber, secondNumber);
-        const duality = findDuality(genderChosen, primaryNumber);
-        const complexity = findComplexity(genderChosen, primaryNumber);
-
-        increaseUseCounter();
-
-        outputToDOM({
-          naturalExpressionYearOfBirth,
-          duality,
-          complexity,
-          primaryNumber,
-          secondNumber,
-          thirdNumber,
-        });
-      }
-    },
-  });
-}
-
-calculateNaturalExpression();
+flatpickr$1('#demo', {
+  onChange(selectedDates) {
+    if (genderChosen !== 'none-chosen') {
+      isDateSelected = true;
+      calculateNaturalExpression(selectedDates);
+    }
+  },
+});
 //# sourceMappingURL=bundle.js.map
