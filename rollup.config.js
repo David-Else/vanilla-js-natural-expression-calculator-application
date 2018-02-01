@@ -7,7 +7,7 @@ export default {
   input: 'src/main.js',
   output: {
     file: 'dist/bundle.js',
-    format: 'es', // change to 'iife' for production
+    format: 'iife', // change to 'iife' for production
     sourcemap: true,
     banner: '/* https://www.elsewebdevelopment.com/ */',
   },

@@ -30,25 +30,36 @@ function increaseUseCounter() {
 // selectors
 //
 const genderBox = document.getElementById('js-gender-box');
+const testMask = document.getElementById('test-mask');
+
 
 genderBox.textContent = 'Click here to choose your gender';
 
-
 function toggleGenderBox() {
   if (isDateSelected === false) {
-    genderBox.classList.toggle('natural-expression-generator__gender-box--color');
     if (genderChosen === 'M') {
       genderChosen = 'F';
       genderBox.textContent = 'Female';
+      genderBox.classList.toggle('natural-expression-generator__gender-box--color-female');
     } else {
       genderChosen = 'M';
       genderBox.textContent = 'Male';
+      genderBox.classList.toggle('natural-expression-generator__gender-box--color-male');
     }
   }
 }
 
-genderBox.addEventListener('click', toggleGenderBox, false);
 
+// add/remove visible, depending on test conditional, i less than 10
+// div.classList.toggle("visible", i < 10 );
+
+
+function tempTest() {
+  document.getElementById('natural-expression-generator--mask').style.display = 'block';
+}
+
+genderBox.addEventListener('click', toggleGenderBox, false);
+testMask.addEventListener('click', tempTest, false);
 
 //
 // Output the information to the DOM
@@ -159,7 +170,7 @@ function calculateNaturalExpression(selectedDates) {
   });
   // const mask = document.getElementById('mask');
   // mask.classList.add('natural-expression-generator--mask');
-  document.getElementById('natural-expression-generator--mask').style.display = 'block';
+  // document.getElementById('natural-expression-generator--mask').style.display = 'block';
 }
 
 //
