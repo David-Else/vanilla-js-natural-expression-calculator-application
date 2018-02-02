@@ -2786,9 +2786,6 @@ const thirdNumberArray = [
   ],
 ];
 
-//
-// GLOBALS
-//
 let genderChosen;
 let isDateSelected = false;
 

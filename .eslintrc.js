@@ -18,7 +18,7 @@ module.exports = {
     ecmaFeatures: {
       experimentalObjectRestSpread: true,
     },
-  },
+  }, 
   rules: {
     strict: 'error',
   },

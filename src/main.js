@@ -12,8 +12,14 @@ import {
 //
 // GLOBALS
 //
-let genderChosen = 'none-chosen';
+let genderChosen;
 let isDateSelected = false;
+
+//
+// selectors
+//
+const genderBox = document.getElementById('js-gender-box');
+const testMask = document.getElementById('test-mask');
 
 //
 // A counter to see how many times the app has been used
@@ -26,38 +32,41 @@ function increaseUseCounter() {
   }
 }
 
-//
-// selectors
-//
-const genderBox = document.getElementById('js-gender-box');
-const testMask = document.getElementById('test-mask');
-
-
-genderBox.textContent = 'Click here to choose your gender';
-
 function toggleGenderBox() {
   if (isDateSelected === false) {
-    if (genderChosen === 'M') {
-      genderChosen = 'F';
-      genderBox.textContent = 'Female';
-      genderBox.classList.toggle('natural-expression-generator__gender-box--color-female');
-    } else {
-      genderChosen = 'M';
-      genderBox.textContent = 'Male';
-      genderBox.classList.toggle('natural-expression-generator__gender-box--color-male');
+    switch (genderChosen) {
+      case undefined:
+        genderChosen = 'M';
+        genderBox.textContent = 'Male';
+        genderBox.classList.add('natural-expression-generator__gender-box--color-male');
+        break;
+      case 'M':
+        genderChosen = 'F';
+        genderBox.textContent = 'Female';
+        genderBox.classList.remove('natural-expression-generator__gender-box--color-male');
+        genderBox.classList.add('natural-expression-generator__gender-box--color-female');
+        break;
+      case 'F':
+        genderChosen = 'M';
+        genderBox.textContent = 'Male';
+        genderBox.classList.remove('natural-expression-generator__gender-box--color-female');
+        genderBox.classList.add('natural-expression-generator__gender-box--color-male');
+        break;
+      default:
+        break;
     }
   }
 }
-
-
-// add/remove visible, depending on test conditional, i less than 10
-// div.classList.toggle("visible", i < 10 );
-
-
+//
+// show rick what will happen when user runs out of goes
+//
 function tempTest() {
   document.getElementById('natural-expression-generator--mask').style.display = 'block';
 }
 
+//
+// add event listeners
+//
 genderBox.addEventListener('click', toggleGenderBox, false);
 testMask.addEventListener('click', tempTest, false);
 
@@ -168,17 +177,14 @@ function calculateNaturalExpression(selectedDates) {
     secondNumber,
     thirdNumber,
   });
-  // const mask = document.getElementById('mask');
-  // mask.classList.add('natural-expression-generator--mask');
-  // document.getElementById('natural-expression-generator--mask').style.display = 'block';
 }
 
 //
 // Run the main program
 //
-flatpickr('#demo', {
+flatpickr('#flatpickr', {
   onChange(selectedDates) {
-    if (genderChosen !== 'none-chosen') {
+    if (genderChosen !== undefined) {
       isDateSelected = true;
       calculateNaturalExpression(selectedDates);
     }

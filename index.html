@@ -13,18 +13,19 @@
     <article class="natural-expression-generator">
 
         <div id="natural-expression-generator--mask">
-            <div id="natural-expression-generator--text">You have reached your maximum number of free tries. Please get in contact for your free consultation!</div>
+            <div id="natural-expression-generator--text">
+                <p>You have reached your maximum number of free tries. Please get in contact for your free consultation!</p>
+            </div>
         </div>
 
         <h1>Tell me my 9-Energy Natural Expression!</h1>
         <button id="test-mask">(click to preview over use)</button>
 
-        <h3>Please select your gender and date of birth</h3>
-        <p>(note: you can click on the year of birth and type directly)</p>
-
-        <div id="js-gender-box" class="natural-expression-generator__gender-box natural-expression-generator__gender-box--color"></div>
-
-        <input id="demo" placeholder="Select date" data-alt-input=true data-alt-format="F j, Y">
+        <h3>1. Please select gender</h3>
+        <div id="js-gender-box" class="natural-expression-generator__gender-box natural-expression-generator__gender-box--color">Click here to choose your gender</div>
+        <h3>2. Please select date of birth</h3>
+        <p>(You can click on year of birth and type directly)</p>
+        <input id="flatpickr" placeholder="Select date" data-alt-input=true data-alt-format="F j, Y">
         <div id="results"></div>
     </article>
     <script src="dist/bundle.js"></script>
