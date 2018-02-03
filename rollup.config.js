@@ -3,6 +3,26 @@ import nodeResolve from 'rollup-plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
 
+// code for using uglify-es modified from https://github.com/TrySound/rollup-plugin-uglify
+const minify = require('uglify-es').minify;
+
+function uglify(userOptions) {
+  const options = Object.assign({
+    sourceMap: true,
+  }, userOptions);
+
+  return {
+    name: 'uglify',
+    transformBundle(code) {
+      const result = minify(code, options);
+      if (result.error) {
+        throw result.error;
+      }
+      return result;
+    },
+  };
+}
+
 export default {
   input: 'src/main.js',
   output: {
@@ -27,7 +47,8 @@ export default {
       ],
       sourceMap: true,
       extract: true,
-      // minimize: true,
+      minimize: true,
     }),
+    uglify(),
   ],
 };

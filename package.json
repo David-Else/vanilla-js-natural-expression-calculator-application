@@ -20,7 +20,8 @@
     "rollup": "^0.55.3",
     "rollup-plugin-commonjs": "^8.3.0",
     "rollup-plugin-node-resolve": "^3.0.2",
-    "rollup-plugin-postcss": "^1.2.8"
+    "rollup-plugin-postcss": "^1.2.8",
+    "uglify-es": "^3.3.9"
   },
   "dependencies": {
     "flatpickr": "^4.2.4"
