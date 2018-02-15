@@ -4,7 +4,7 @@ import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
 
 // code for using uglify-es modified from https://github.com/TrySound/rollup-plugin-uglify
-const minify = require('uglify-es').minify;
+const minify = require('uglify-es').minify; // eslint-disable-line
 
 function uglify(userOptions) {
   const options = Object.assign({
@@ -27,7 +27,7 @@ export default {
   input: 'src/main.js',
   output: {
     file: 'dist/bundle.js',
-    format: 'iife', // change to 'iife' for production
+    format: 'es', // change to 'iife' for production
     sourcemap: true,
     banner: '/* https://www.elsewebdevelopment.com/ */',
   },

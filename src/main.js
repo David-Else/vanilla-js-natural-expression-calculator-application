@@ -78,6 +78,7 @@ function outputToDOM(thingsToPrint) {
   <p>Your number of goes using this app are <strong>${localStorage.timesUsed}</strong></p>
     <p>(NE year of birth is <strong>${thingsToPrint.naturalExpressionYearOfBirth}</strong>)</p>
     <p>Your gender is <strong>${genderChosen}</strong></p>
+    <p>Your type of expression is <strong>${thingsToPrint.typeOfExpression}</strong></p>
     <p>You are <strong>${thingsToPrint.duality}</strong></p>
     <p>You are a <strong>${thingsToPrint.complexity}</strong> Expression</p>
     <h3>Your 9-Energy Natural Expression is:</h3>
@@ -107,6 +108,18 @@ function findPrimaryNumber(gender, naturalExpressionYearOfBirth) {
   return (gender === 'F') ?
     (primaryNumberFemales.find(includesYearOfBirth) || {}).number :
     (primaryNumberMales.find(includesYearOfBirth) || {}).number;
+}
+
+//
+// Return type of expression based on gender and special year of birth
+//
+function findTypeOfExpression(gender, naturalExpressionYearOfBirth) {
+  const includesYearOfBirth = element =>
+    element.year.includes(naturalExpressionYearOfBirth);
+
+  return (gender === 'F') ?
+    (primaryNumberFemales.find(includesYearOfBirth) || {}).name :
+    (primaryNumberMales.find(includesYearOfBirth) || {}).name;
 }
 
 //
@@ -164,6 +177,7 @@ function calculateNaturalExpression(selectedDates) {
   const naturalExpressionYearOfBirth = calculateYear(selectedDates);
   const monthOfBirth = selectedDates[0].getMonth();
   const primaryNumber = findPrimaryNumber(genderChosen, naturalExpressionYearOfBirth);
+  const typeOfExpression = findTypeOfExpression(genderChosen, naturalExpressionYearOfBirth);
   const secondNumber = findSecondNumber(genderChosen, primaryNumber, monthOfBirth);
   const thirdNumber = findThirdNumber(primaryNumber, secondNumber);
   const duality = findDuality(genderChosen, primaryNumber);
@@ -174,6 +188,7 @@ function calculateNaturalExpression(selectedDates) {
     duality,
     complexity,
     primaryNumber,
+    typeOfExpression,
     secondNumber,
     thirdNumber,
   });
