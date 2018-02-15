@@ -60,27 +60,28 @@ function toggleGenderBox() {
 //
 // show rick what will happen when user runs out of goes
 //
-function tempTest() {
-  document.getElementById('natural-expression-generator--mask').style.display = 'block';
-}
+// function tempTest() {
+//   document.getElementById('natural-expression-generator--mask').style.display = 'block';
+// }
 
 //
 // add event listeners
 //
 genderBox.addEventListener('click', toggleGenderBox, false);
-testMask.addEventListener('click', tempTest, false);
+// testMask.addEventListener('click', tempTest, false);
 
 //
 // Output the information to the DOM
 //
 function outputToDOM(thingsToPrint) {
   const resultString = `
-  <p>Your number of goes using this app are <strong>${localStorage.timesUsed}</strong></p>
-    <p>(NE year of birth is <strong>${thingsToPrint.naturalExpressionYearOfBirth}</strong>)</p>
+  <!-- <p>(Your number of goes using this app are <strong>${localStorage.timesUsed}</strong>)</p> -->
     <p>Your gender is <strong>${genderChosen}</strong></p>
-    <p>Your type of expression is <strong>${thingsToPrint.typeOfExpression}</strong></p>
+    <p>You are a <strong>${thingsToPrint.typeOfExpression}</strong></p>
     <p>You are <strong>${thingsToPrint.duality}</strong></p>
     <p>You are a <strong>${thingsToPrint.complexity}</strong> Expression</p>
+    <p>Your primary number is <strong>${thingsToPrint.primaryNumber}</strong></p>
+    <p>Your second number is <strong>${thingsToPrint.secondNumber}</strong></p>    
     <h3>Your 9-Energy Natural Expression is:</h3>
     <h2><strong>${thingsToPrint.thirdNumber[0]}-${thingsToPrint.thirdNumber[1]}-${thingsToPrint.thirdNumber[2]}</strong></h2>
     <p><strong>"${thingsToPrint.thirdNumber[3]}"</strong></p>`;
@@ -184,7 +185,6 @@ function calculateNaturalExpression(selectedDates) {
   const complexity = findComplexity(genderChosen, primaryNumber);
   increaseUseCounter();
   outputToDOM({
-    naturalExpressionYearOfBirth,
     duality,
     complexity,
     primaryNumber,
