@@ -77,7 +77,7 @@ function outputToDOM(thingsToPrint) {
   const resultString = `
   <!-- <p>(Your number of goes using this app are <strong>${localStorage.timesUsed}</strong>)</p> -->
     <p>Your gender is <strong>${genderChosen}</strong></p>
-    <p>You are a <strong>${thingsToPrint.typeOfExpression}</strong></p>
+    <p>Your Expression is <strong>${thingsToPrint.typeOfExpression}</strong></p>
     <p>You are <strong>${thingsToPrint.duality}</strong></p>
     <p>You are a <strong>${thingsToPrint.complexity}</strong> Expression</p>
     <p>Your primary number is <strong>${thingsToPrint.primaryNumber}</strong></p>

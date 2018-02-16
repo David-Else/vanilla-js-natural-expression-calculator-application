@@ -27,7 +27,7 @@ export default {
   input: 'src/main.js',
   output: {
     file: 'dist/bundle.js',
-    format: 'es', // change to 'iife' for production
+    format: 'iife', // change to 'iife' for production, 'es' to test
     sourcemap: true,
     banner: '/* https://www.elsewebdevelopment.com/ */',
   },
@@ -49,6 +49,6 @@ export default {
       extract: true,
       minimize: true,
     }),
-    uglify(),
+    // uglify(),
   ],
 };
