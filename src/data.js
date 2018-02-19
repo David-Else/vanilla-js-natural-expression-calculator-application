@@ -1,5 +1,5 @@
 const primaryNumberMales = [{
-  name: 'Fire Yin',
+  name: 'Fire',
   number: 9,
   duality: 'Yin',
   complexity: 'Complex',
@@ -19,7 +19,7 @@ const primaryNumberMales = [{
   ],
 },
 {
-  name: 'Mountain Yang',
+  name: 'Mountain',
   number: 8,
   duality: 'Yang',
   complexity: 'Simple',
@@ -39,7 +39,7 @@ const primaryNumberMales = [{
   ],
 },
 {
-  name: 'Lake Yin',
+  name: 'Lake',
   number: 7,
   duality: 'Yin',
   complexity: 'Complex',
@@ -59,7 +59,7 @@ const primaryNumberMales = [{
   ],
 },
 {
-  name: 'Sky Yang',
+  name: 'Sky',
   number: 6,
   duality: 'Yang',
   complexity: 'Simple',
@@ -79,7 +79,7 @@ const primaryNumberMales = [{
   ],
 },
 {
-  name: 'Earth Core Yang',
+  name: 'Earth Core',
   number: 5,
   duality: 'Yang',
   complexity: 'Simple',
@@ -99,7 +99,7 @@ const primaryNumberMales = [{
   ],
 },
 {
-  name: 'Wind Yin',
+  name: 'Wind',
   number: 4,
   duality: 'Yin',
   complexity: 'Complex',
@@ -119,7 +119,7 @@ const primaryNumberMales = [{
   ],
 },
 {
-  name: 'Thunder Yang',
+  name: 'Thunder',
   number: 3,
   duality: 'Yang',
   complexity: 'Simple',
@@ -139,7 +139,7 @@ const primaryNumberMales = [{
   ],
 },
 {
-  name: 'Earth Yin',
+  name: 'Earth',
   number: 2,
   duality: 'Yin',
   complexity: 'Complex',
@@ -159,7 +159,7 @@ const primaryNumberMales = [{
   ],
 },
 {
-  name: 'Sea Yang',
+  name: 'Sea',
   number: 1,
   duality: 'Yang',
   complexity: 'Simple',
@@ -182,7 +182,7 @@ const primaryNumberMales = [{
 
 
 const primaryNumberFemales = [{
-  name: 'Sky Yang',
+  name: 'Sky',
   number: 6,
   duality: 'Yang',
   complexity: 'Complex',
@@ -202,7 +202,7 @@ const primaryNumberFemales = [{
   ],
 },
 {
-  name: 'Lake Yin',
+  name: 'Lake',
   number: 7,
   duality: 'Yin',
   complexity: 'Simple',
@@ -222,7 +222,7 @@ const primaryNumberFemales = [{
   ],
 },
 {
-  name: 'Mountain Yang',
+  name: 'Mountain',
   number: 8,
   duality: 'Yang',
   complexity: 'Complex',
@@ -242,7 +242,7 @@ const primaryNumberFemales = [{
   ],
 },
 {
-  name: 'Fire Yin',
+  name: 'Fire',
   number: 9,
   duality: 'Yin',
   complexity: 'Simple',
@@ -262,7 +262,7 @@ const primaryNumberFemales = [{
   ],
 },
 {
-  name: 'Sea Yang',
+  name: 'Sea',
   number: 1,
   duality: 'Yang',
   complexity: 'Complex',
@@ -282,7 +282,7 @@ const primaryNumberFemales = [{
   ],
 },
 {
-  name: 'Earth Yin',
+  name: 'Earth',
   number: 2,
   duality: 'Yin',
   complexity: 'Simple',
@@ -302,7 +302,7 @@ const primaryNumberFemales = [{
   ],
 },
 {
-  name: 'Thunder Yang',
+  name: 'Thunder',
   number: 3,
   duality: 'Yang',
   complexity: 'Complex',
@@ -322,7 +322,7 @@ const primaryNumberFemales = [{
   ],
 },
 {
-  name: 'Wind Yin',
+  name: 'Wind',
   number: 4,
   duality: 'Yin',
   complexity: 'Simple',
@@ -342,7 +342,7 @@ const primaryNumberFemales = [{
   ],
 },
 {
-  name: 'Earth Core Yang',
+  name: 'Earth Core',
   number: 5,
   duality: 'Yang',
   complexity: 'Complex',

@@ -13,7 +13,6 @@ import {
 // GLOBALS
 //
 let genderChosen;
-let isDateSelected = false;
 
 //
 // selectors
@@ -33,28 +32,29 @@ function increaseUseCounter() {
 }
 
 function toggleGenderBox() {
-  if (isDateSelected === false) {
-    switch (genderChosen) {
-      case undefined:
-        genderChosen = 'M';
-        genderBox.textContent = 'Male';
-        genderBox.classList.add('natural-expression-generator__gender-box--color-male');
-        break;
-      case 'M':
-        genderChosen = 'F';
-        genderBox.textContent = 'Female';
-        genderBox.classList.remove('natural-expression-generator__gender-box--color-male');
-        genderBox.classList.add('natural-expression-generator__gender-box--color-female');
-        break;
-      case 'F':
-        genderChosen = 'M';
-        genderBox.textContent = 'Male';
-        genderBox.classList.remove('natural-expression-generator__gender-box--color-female');
-        genderBox.classList.add('natural-expression-generator__gender-box--color-male');
-        break;
-      default:
-        break;
-    }
+  switch (genderChosen) {
+    case undefined:
+      genderChosen = 'M';
+      genderBox.textContent = 'Male';
+      genderBox.classList.add('natural-expression-generator__gender-box--color-male');
+      break;
+    case 'M':
+      genderChosen = 'F';
+      genderBox.textContent = 'Female';
+      genderBox.classList.remove('natural-expression-generator__gender-box--color-male');
+      genderBox.classList.add('natural-expression-generator__gender-box--color-female');
+      break;
+    case 'F':
+      genderChosen = 'M';
+      genderBox.textContent = 'Male';
+      genderBox.classList.remove('natural-expression-generator__gender-box--color-female');
+      genderBox.classList.add('natural-expression-generator__gender-box--color-male');
+      break;
+    default:
+      break;
+  }
+  if (fp.selectedDates.length > 0) {
+    calculateNaturalExpression(fp.selectedDates);
   }
 }
 //
@@ -197,10 +197,9 @@ function calculateNaturalExpression(selectedDates) {
 //
 // Run the main program
 //
-flatpickr('#flatpickr', {
+let fp = flatpickr('#flatpickr', {
   onChange(selectedDates) {
     if (genderChosen !== undefined) {
-      isDateSelected = true;
       calculateNaturalExpression(selectedDates);
     }
   },

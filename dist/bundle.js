@@ -1,7 +1,4 @@
 /* https://www.elsewebdevelopment.com/ */
-(function () {
-'use strict';
-
 var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
 function unwrapExports (x) {
@@ -2236,7 +2233,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var flatpickr$1 = unwrapExports(flatpickr);
 
 const primaryNumberMales = [{
-  name: 'Fire Yin',
+  name: 'Fire',
   number: 9,
   duality: 'Yin',
   complexity: 'Complex',
@@ -2256,7 +2253,7 @@ const primaryNumberMales = [{
   ],
 },
 {
-  name: 'Mountain Yang',
+  name: 'Mountain',
   number: 8,
   duality: 'Yang',
   complexity: 'Simple',
@@ -2276,7 +2273,7 @@ const primaryNumberMales = [{
   ],
 },
 {
-  name: 'Lake Yin',
+  name: 'Lake',
   number: 7,
   duality: 'Yin',
   complexity: 'Complex',
@@ -2296,7 +2293,7 @@ const primaryNumberMales = [{
   ],
 },
 {
-  name: 'Sky Yang',
+  name: 'Sky',
   number: 6,
   duality: 'Yang',
   complexity: 'Simple',
@@ -2316,7 +2313,7 @@ const primaryNumberMales = [{
   ],
 },
 {
-  name: 'Earth Core Yang',
+  name: 'Earth Core',
   number: 5,
   duality: 'Yang',
   complexity: 'Simple',
@@ -2336,7 +2333,7 @@ const primaryNumberMales = [{
   ],
 },
 {
-  name: 'Wind Yin',
+  name: 'Wind',
   number: 4,
   duality: 'Yin',
   complexity: 'Complex',
@@ -2356,7 +2353,7 @@ const primaryNumberMales = [{
   ],
 },
 {
-  name: 'Thunder Yang',
+  name: 'Thunder',
   number: 3,
   duality: 'Yang',
   complexity: 'Simple',
@@ -2376,7 +2373,7 @@ const primaryNumberMales = [{
   ],
 },
 {
-  name: 'Earth Yin',
+  name: 'Earth',
   number: 2,
   duality: 'Yin',
   complexity: 'Complex',
@@ -2396,7 +2393,7 @@ const primaryNumberMales = [{
   ],
 },
 {
-  name: 'Sea Yang',
+  name: 'Sea',
   number: 1,
   duality: 'Yang',
   complexity: 'Simple',
@@ -2419,7 +2416,7 @@ const primaryNumberMales = [{
 
 
 const primaryNumberFemales = [{
-  name: 'Sky Yang',
+  name: 'Sky',
   number: 6,
   duality: 'Yang',
   complexity: 'Complex',
@@ -2439,7 +2436,7 @@ const primaryNumberFemales = [{
   ],
 },
 {
-  name: 'Lake Yin',
+  name: 'Lake',
   number: 7,
   duality: 'Yin',
   complexity: 'Simple',
@@ -2459,7 +2456,7 @@ const primaryNumberFemales = [{
   ],
 },
 {
-  name: 'Mountain Yang',
+  name: 'Mountain',
   number: 8,
   duality: 'Yang',
   complexity: 'Complex',
@@ -2479,7 +2476,7 @@ const primaryNumberFemales = [{
   ],
 },
 {
-  name: 'Fire Yin',
+  name: 'Fire',
   number: 9,
   duality: 'Yin',
   complexity: 'Simple',
@@ -2499,7 +2496,7 @@ const primaryNumberFemales = [{
   ],
 },
 {
-  name: 'Sea Yang',
+  name: 'Sea',
   number: 1,
   duality: 'Yang',
   complexity: 'Complex',
@@ -2519,7 +2516,7 @@ const primaryNumberFemales = [{
   ],
 },
 {
-  name: 'Earth Yin',
+  name: 'Earth',
   number: 2,
   duality: 'Yin',
   complexity: 'Simple',
@@ -2539,7 +2536,7 @@ const primaryNumberFemales = [{
   ],
 },
 {
-  name: 'Thunder Yang',
+  name: 'Thunder',
   number: 3,
   duality: 'Yang',
   complexity: 'Complex',
@@ -2559,7 +2556,7 @@ const primaryNumberFemales = [{
   ],
 },
 {
-  name: 'Wind Yin',
+  name: 'Wind',
   number: 4,
   duality: 'Yin',
   complexity: 'Simple',
@@ -2579,7 +2576,7 @@ const primaryNumberFemales = [{
   ],
 },
 {
-  name: 'Earth Core Yang',
+  name: 'Earth Core',
   number: 5,
   duality: 'Yang',
   complexity: 'Complex',
@@ -2807,7 +2804,6 @@ const thirdNumberArray = [
 // GLOBALS
 //
 let genderChosen;
-let isDateSelected = false;
 
 //
 // selectors
@@ -2827,28 +2823,29 @@ function increaseUseCounter() {
 }
 
 function toggleGenderBox() {
-  if (isDateSelected === false) {
-    switch (genderChosen) {
-      case undefined:
-        genderChosen = 'M';
-        genderBox.textContent = 'Male';
-        genderBox.classList.add('natural-expression-generator__gender-box--color-male');
-        break;
-      case 'M':
-        genderChosen = 'F';
-        genderBox.textContent = 'Female';
-        genderBox.classList.remove('natural-expression-generator__gender-box--color-male');
-        genderBox.classList.add('natural-expression-generator__gender-box--color-female');
-        break;
-      case 'F':
-        genderChosen = 'M';
-        genderBox.textContent = 'Male';
-        genderBox.classList.remove('natural-expression-generator__gender-box--color-female');
-        genderBox.classList.add('natural-expression-generator__gender-box--color-male');
-        break;
-      default:
-        break;
-    }
+  switch (genderChosen) {
+    case undefined:
+      genderChosen = 'M';
+      genderBox.textContent = 'Male';
+      genderBox.classList.add('natural-expression-generator__gender-box--color-male');
+      break;
+    case 'M':
+      genderChosen = 'F';
+      genderBox.textContent = 'Female';
+      genderBox.classList.remove('natural-expression-generator__gender-box--color-male');
+      genderBox.classList.add('natural-expression-generator__gender-box--color-female');
+      break;
+    case 'F':
+      genderChosen = 'M';
+      genderBox.textContent = 'Male';
+      genderBox.classList.remove('natural-expression-generator__gender-box--color-female');
+      genderBox.classList.add('natural-expression-generator__gender-box--color-male');
+      break;
+    default:
+      break;
+  }
+  if (fp.selectedDates.length > 0) {
+    calculateNaturalExpression(fp.selectedDates);
   }
 }
 //
@@ -2991,14 +2988,11 @@ function calculateNaturalExpression(selectedDates) {
 //
 // Run the main program
 //
-flatpickr$1('#flatpickr', {
+let fp = flatpickr$1('#flatpickr', {
   onChange(selectedDates) {
     if (genderChosen !== undefined) {
-      isDateSelected = true;
       calculateNaturalExpression(selectedDates);
     }
   },
 });
-
-}());
 //# sourceMappingURL=bundle.js.map
