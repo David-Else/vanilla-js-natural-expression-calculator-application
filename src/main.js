@@ -13,10 +13,6 @@ import {
 // GLOBALS
 //
 let genderChosen;
-
-//
-// selectors
-//
 const genderBox = document.getElementById('js-gender-box');
 
 //
@@ -207,6 +203,5 @@ function toggleGenderBox() {
 // add event listeners
 //
 genderBox.addEventListener('click', toggleGenderBox, false);
-// testMask.addEventListener('click', tempTest, false);
 
 checkGoesLeft();
