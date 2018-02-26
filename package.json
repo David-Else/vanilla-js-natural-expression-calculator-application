@@ -13,17 +13,17 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^7.2.5",
+    "autoprefixer": "^8.0.0",
     "chai": "^4.1.2",
     "doiuse": "^4.0.0",
     "mocha": "^5.0.1",
-    "rollup": "^0.56.2",
+    "rollup": "^0.56.3",
     "rollup-plugin-commonjs": "^8.3.0",
     "rollup-plugin-node-resolve": "^3.0.3",
-    "rollup-plugin-postcss": "^1.2.8",
+    "rollup-plugin-postcss": "^1.2.9",
     "uglify-es": "^3.3.9"
   },
   "dependencies": {
-    "flatpickr": "^4.2.4"
+    "flatpickr": "^4.3.2"
   }
 }

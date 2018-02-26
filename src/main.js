@@ -18,64 +18,31 @@ let genderChosen;
 // selectors
 //
 const genderBox = document.getElementById('js-gender-box');
-const testMask = document.getElementById('test-mask');
 
 //
 // A counter to see how many times the app has been used
 //
 function increaseUseCounter() {
-  if (localStorage.timesUsed) {
-    localStorage.timesUsed = Number(localStorage.timesUsed) + 1;
+  if (localStorage.triesLeft) {
+    localStorage.triesLeft = Number(localStorage.triesLeft) - 1;
   } else {
-    localStorage.timesUsed = 1;
+    localStorage.triesLeft = 2;
   }
 }
 
-function toggleGenderBox() {
-  switch (genderChosen) {
-    case undefined:
-      genderChosen = 'M';
-      genderBox.textContent = 'Male';
-      genderBox.classList.add('natural-expression-generator__gender-box--color-male');
-      break;
-    case 'M':
-      genderChosen = 'F';
-      genderBox.textContent = 'Female';
-      genderBox.classList.remove('natural-expression-generator__gender-box--color-male');
-      genderBox.classList.add('natural-expression-generator__gender-box--color-female');
-      break;
-    case 'F':
-      genderChosen = 'M';
-      genderBox.textContent = 'Male';
-      genderBox.classList.remove('natural-expression-generator__gender-box--color-female');
-      genderBox.classList.add('natural-expression-generator__gender-box--color-male');
-      break;
-    default:
-      break;
-  }
-  if (fp.selectedDates.length > 0) {
-    calculateNaturalExpression(fp.selectedDates);
+
+function checkGoesLeft() {
+  if (localStorage.triesLeft < 1) {
+    document.getElementById('natural-expression-generator--mask').style.display = 'block';
   }
 }
-//
-// show rick what will happen when user runs out of goes
-//
-// function tempTest() {
-//   document.getElementById('natural-expression-generator--mask').style.display = 'block';
-// }
-
-//
-// add event listeners
-//
-genderBox.addEventListener('click', toggleGenderBox, false);
-// testMask.addEventListener('click', tempTest, false);
 
 //
 // Output the information to the DOM
 //
 function outputToDOM(thingsToPrint) {
   const resultString = `
-  <!-- <p>(Your number of goes using this app are <strong>${localStorage.timesUsed}</strong>)</p> -->
+    <p>(Your number of goes using this app are <strong>${localStorage.triesLeft}</strong>)</p>
     <p>Your gender is <strong>${genderChosen}</strong></p>
     <p>Your Expression is <strong>${thingsToPrint.typeOfExpression}</strong></p>
     <p>You are <strong>${thingsToPrint.duality}</strong></p>
@@ -86,6 +53,7 @@ function outputToDOM(thingsToPrint) {
     <h2><strong>${thingsToPrint.thirdNumber[0]}-${thingsToPrint.thirdNumber[1]}-${thingsToPrint.thirdNumber[2]}</strong></h2>
     <p><strong>"${thingsToPrint.thirdNumber[3]}"</strong></p>`;
   document.getElementById('results').innerHTML = resultString;
+  document.getElementById('attemps-left').innerHTML = localStorage.triesLeft;
 }
 
 //
@@ -175,6 +143,7 @@ function findThirdNumber(primaryNumber, secondNumber) {
 }
 
 function calculateNaturalExpression(selectedDates) {
+  checkGoesLeft();
   const naturalExpressionYearOfBirth = calculateYear(selectedDates);
   const monthOfBirth = selectedDates[0].getMonth();
   const primaryNumber = findPrimaryNumber(genderChosen, naturalExpressionYearOfBirth);
@@ -194,13 +163,50 @@ function calculateNaturalExpression(selectedDates) {
   });
 }
 
+
 //
-// Run the main program
+// Run flatpickr
 //
-let fp = flatpickr('#flatpickr', {
+const fp = flatpickr('#flatpickr', {
   onChange(selectedDates) {
     if (genderChosen !== undefined) {
       calculateNaturalExpression(selectedDates);
     }
   },
 });
+
+
+function toggleGenderBox() {
+  switch (genderChosen) {
+    case undefined:
+      genderChosen = 'M';
+      genderBox.textContent = 'Male';
+      genderBox.classList.add('natural-expression-generator__gender-box--color-male');
+      break;
+    case 'M':
+      genderChosen = 'F';
+      genderBox.textContent = 'Female';
+      genderBox.classList.remove('natural-expression-generator__gender-box--color-male');
+      genderBox.classList.add('natural-expression-generator__gender-box--color-female');
+      break;
+    case 'F':
+      genderChosen = 'M';
+      genderBox.textContent = 'Male';
+      genderBox.classList.remove('natural-expression-generator__gender-box--color-female');
+      genderBox.classList.add('natural-expression-generator__gender-box--color-male');
+      break;
+    default:
+      break;
+  }
+  if (fp.selectedDates.length > 0) {
+    calculateNaturalExpression(fp.selectedDates);
+  }
+}
+
+//
+// add event listeners
+//
+genderBox.addEventListener('click', toggleGenderBox, false);
+// testMask.addEventListener('click', tempTest, false);
+
+checkGoesLeft();
