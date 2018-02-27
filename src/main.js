@@ -67,7 +67,7 @@ function calculateYear(selectedDates) {
 //
 // Read from the data and calculate the results
 //
-function findPrimaryNumberAndTypeObjectReturn(gender, naturalExpressionYearOfBirth, monthOfBirth) {
+function tempMegaFunction(gender, naturalExpressionYearOfBirth, monthOfBirth) {
   const results = {};
 
   // find primaryNumber and typeOfExpression
