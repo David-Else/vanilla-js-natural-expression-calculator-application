@@ -75,22 +75,23 @@ function findPrimaryNumber(gender, naturalExpressionYearOfBirth) {
 }
 
 function findPrimaryNumberAndTypeObjectReturn(gender, naturalExpressionYearOfBirth, monthOfBirth) {
+  const results = {};
   const includesYearOfBirth = element =>
     element.year.includes(naturalExpressionYearOfBirth);
 
-  const objectOne = (gender === 'F') ? {
-    primaryNumber: (primaryNumberFemales.find(includesYearOfBirth) || {}).number,
-    typeOfExpression: (primaryNumberFemales.find(includesYearOfBirth) || {}).name,
-  } : {
-    primaryNumber: (primaryNumberMales.find(includesYearOfBirth) || {}).number,
-    typeOfExpression: (primaryNumberMales.find(includesYearOfBirth) || {}).name,
-  };
+  if (gender === 'F') {
+    results.primaryNumber = (primaryNumberFemales.find(includesYearOfBirth) || {}).number;
+    results.typeOfExpression = (primaryNumberFemales.find(includesYearOfBirth) || {}).name;
+  } else {
+    results.primaryNumber = (primaryNumberMales.find(includesYearOfBirth) || {}).number;
+    results.typeOfExpression = (primaryNumberMales.find(includesYearOfBirth) || {}).name;
+  }
 
   const isPrimaryNumber = element =>
-    element.number === objectOne.primaryNumber;
+    element.number === results.primaryNumber;
 
   const includesPrimaryNumber = element =>
-    element.primary.includes(objectOne.primaryNumber);
+    element.primary.includes(results.primaryNumber);
 
   const listOfSecondaryNumbers = (gender === 'F') ?
     (secondNumberFemales.find(includesPrimaryNumber) || {}).secondary :
@@ -102,18 +103,26 @@ function findPrimaryNumberAndTypeObjectReturn(gender, naturalExpressionYearOfBir
     monthIndex = listOfSecondaryNumbers.length - 1;
   }
 
-  const objectTwo = (gender === 'F') ? {
-    duality: (primaryNumberFemales.find(isPrimaryNumber) || {}).duality,
-    complexity: (primaryNumberFemales.find(isPrimaryNumber) || {}).complexity,
-    secondNumber: listOfSecondaryNumbers[monthIndex],
-  } : {
-    duality: (primaryNumberMales.find(isPrimaryNumber) || {}).duality,
-    complexity: (primaryNumberMales.find(isPrimaryNumber) || {}).complexity,
-    secondNumber: listOfSecondaryNumbers[monthIndex],
-  };
-  
-  console.log(objectOne);
-  console.log(objectTwo);
+  results.secondNumber = listOfSecondaryNumbers[monthIndex];
+
+  if (gender === 'F') {
+    results.duality = (primaryNumberFemales.find(isPrimaryNumber) || {}).duality;
+    results.complexity = (primaryNumberFemales.find(isPrimaryNumber) || {}).complexity;
+  } else {
+    results.duality = (primaryNumberMales.find(isPrimaryNumber) || {}).duality;
+    results.complexity = (primaryNumberMales.find(isPrimaryNumber) || {}).complexity;
+  }
+
+  const secondNumberIndex = --(results.secondNumber);
+  const primaryNumberIndex = --(results.primaryNumber);
+
+  console.log(thirdNumberArray[secondNumberIndex][primaryNumberIndex]);
+
+  results.thirdNumber = (thirdNumberArray[secondNumberIndex][primaryNumberIndex])[2];
+  results.text = (thirdNumberArray[secondNumberIndex][primaryNumberIndex])[3];
+  // thirdNumberArray[--secondNumber][--primaryNumber];
+
+  console.log(results);
 }
 
 //
