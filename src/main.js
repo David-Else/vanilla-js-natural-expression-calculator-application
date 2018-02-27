@@ -22,7 +22,7 @@ function increaseUseCounter() {
   if (localStorage.triesLeft) {
     localStorage.triesLeft = Number(localStorage.triesLeft) - 1;
   } else {
-    localStorage.triesLeft = 2;
+    localStorage.triesLeft = 200;
   }
 }
 
@@ -37,19 +37,18 @@ function checkGoesLeft() {
 // Output the information to the DOM
 //
 function outputToDOM(thingsToPrint) {
-  const resultString = `
-    <p>(Your number of goes using this app are <strong>${localStorage.triesLeft}</strong>)</p>
-    <p>Your gender is <strong>${genderChosen}</strong></p>
-    <p>Your Expression is <strong>${thingsToPrint.typeOfExpression}</strong></p>
-    <p>You are <strong>${thingsToPrint.duality}</strong></p>
-    <p>You are a <strong>${thingsToPrint.complexity}</strong> Expression</p>
-    <p>Your primary number is <strong>${thingsToPrint.primaryNumber}</strong></p>
-    <p>Your second number is <strong>${thingsToPrint.secondNumber}</strong></p>    
-    <h3>Your 9-Energy Natural Expression is:</h3>
-    <h2><strong>${thingsToPrint.thirdNumber[0]}-${thingsToPrint.thirdNumber[1]}-${thingsToPrint.thirdNumber[2]}</strong></h2>
-    <p><strong>"${thingsToPrint.thirdNumber[3]}"</strong></p>`;
-  document.getElementById('results').innerHTML = resultString;
   document.getElementById('attemps-left').innerHTML = localStorage.triesLeft;
+  document.getElementById('results').innerHTML = `
+  <p>(Your number of goes using this app are <strong>${localStorage.triesLeft}</strong>)</p>
+  <p>Your gender is <strong>${genderChosen}</strong></p>
+  <p>Your Expression is <strong>${thingsToPrint.typeOfExpression}</strong></p>
+  <p>You are <strong>${thingsToPrint.duality}</strong></p>
+  <p>You are a <strong>${thingsToPrint.complexity}</strong> Expression</p>
+  <p>Your primary number is <strong>${thingsToPrint.primaryNumber}</strong></p>
+  <p>Your second number is <strong>${thingsToPrint.secondNumber}</strong></p>    
+  <h3>Your 9-Energy Natural Expression is:</h3>
+  <h2><strong>${thingsToPrint.thirdNumber[0]}-${thingsToPrint.thirdNumber[1]}-${thingsToPrint.thirdNumber[2]}</strong></h2>
+  <p><strong>"${thingsToPrint.thirdNumber[3]}"</strong></p>`;
 }
 
 //
@@ -73,6 +72,48 @@ function findPrimaryNumber(gender, naturalExpressionYearOfBirth) {
   return (gender === 'F') ?
     (primaryNumberFemales.find(includesYearOfBirth) || {}).number :
     (primaryNumberMales.find(includesYearOfBirth) || {}).number;
+}
+
+function findPrimaryNumberAndTypeObjectReturn(gender, naturalExpressionYearOfBirth, monthOfBirth) {
+  const includesYearOfBirth = element =>
+    element.year.includes(naturalExpressionYearOfBirth);
+
+  const objectOne = (gender === 'F') ? {
+    primaryNumber: (primaryNumberFemales.find(includesYearOfBirth) || {}).number,
+    typeOfExpression: (primaryNumberFemales.find(includesYearOfBirth) || {}).name,
+  } : {
+    primaryNumber: (primaryNumberMales.find(includesYearOfBirth) || {}).number,
+    typeOfExpression: (primaryNumberMales.find(includesYearOfBirth) || {}).name,
+  };
+
+  const isPrimaryNumber = element =>
+    element.number === objectOne.primaryNumber;
+
+  const includesPrimaryNumber = element =>
+    element.primary.includes(objectOne.primaryNumber);
+
+  const listOfSecondaryNumbers = (gender === 'F') ?
+    (secondNumberFemales.find(includesPrimaryNumber) || {}).secondary :
+    (secondNumberMales.find(includesPrimaryNumber) || {}).secondary;
+
+  let monthIndex = monthOfBirth - 1;
+
+  if (monthIndex < 0) {
+    monthIndex = listOfSecondaryNumbers.length - 1;
+  }
+
+  const objectTwo = (gender === 'F') ? {
+    duality: (primaryNumberFemales.find(isPrimaryNumber) || {}).duality,
+    complexity: (primaryNumberFemales.find(isPrimaryNumber) || {}).complexity,
+    secondNumber: listOfSecondaryNumbers[monthIndex],
+  } : {
+    duality: (primaryNumberMales.find(isPrimaryNumber) || {}).duality,
+    complexity: (primaryNumberMales.find(isPrimaryNumber) || {}).complexity,
+    secondNumber: listOfSecondaryNumbers[monthIndex],
+  };
+  
+  console.log(objectOne);
+  console.log(objectTwo);
 }
 
 //
@@ -135,6 +176,7 @@ function findSecondNumber(gender, primaryNumber, monthOfBirth) {
 // Return the 9-Energy Natural Expression
 //
 function findThirdNumber(primaryNumber, secondNumber) {
+  // WARNING this mutates something when put in new mega function
   return thirdNumberArray[--secondNumber][--primaryNumber];
 }
 
@@ -143,6 +185,7 @@ function calculateNaturalExpression(selectedDates) {
   const naturalExpressionYearOfBirth = calculateYear(selectedDates);
   const monthOfBirth = selectedDates[0].getMonth();
   const primaryNumber = findPrimaryNumber(genderChosen, naturalExpressionYearOfBirth);
+  console.log(findPrimaryNumberAndTypeObjectReturn(genderChosen, naturalExpressionYearOfBirth, monthOfBirth));
   const typeOfExpression = findTypeOfExpression(genderChosen, naturalExpressionYearOfBirth);
   const secondNumber = findSecondNumber(genderChosen, primaryNumber, monthOfBirth);
   const thirdNumber = findThirdNumber(primaryNumber, secondNumber);
