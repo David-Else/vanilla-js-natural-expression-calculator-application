@@ -2743,15 +2743,10 @@ function calculateYear(selectedDates) {
 }
 
 //
-// Read from the data and calculate the results
+// Why does the results object get returned?!
 //
-function findPrimaryNumberAndTypeObjectReturn(gender, naturalExpressionYearOfBirth, monthOfBirth) {
-  const results = {};
-
-  // find primaryNumber and typeOfExpression
-  const includesYearOfBirth = element =>
-    element.year.includes(naturalExpressionYearOfBirth);
-
+function findPrimaryNumberAndTypeOfExpression(naturalExpressionYearOfBirth, gender, results) {
+  const includesYearOfBirth = element => element.year.includes(naturalExpressionYearOfBirth);
   if (gender === 'F') {
     results.primaryNumber = (primaryNumberFemales.find(includesYearOfBirth) || {}).number;
     results.typeOfExpression = (primaryNumberFemales.find(includesYearOfBirth) || {}).name;
@@ -2759,6 +2754,16 @@ function findPrimaryNumberAndTypeObjectReturn(gender, naturalExpressionYearOfBir
     results.primaryNumber = (primaryNumberMales.find(includesYearOfBirth) || {}).number;
     results.typeOfExpression = (primaryNumberMales.find(includesYearOfBirth) || {}).name;
   }
+}
+
+//
+// Read from the data and calculate the results
+//
+function tempMegaFunction(gender, naturalExpressionYearOfBirth, monthOfBirth) {
+  const results = {};
+
+  // find primaryNumber and typeOfExpression
+  findPrimaryNumberAndTypeOfExpression(naturalExpressionYearOfBirth, gender, results);
   // --------------------------------------------------------------------------
 
   // find secondaryNumber * needs results.primaryNumber created above
@@ -2811,7 +2816,7 @@ function calculateNaturalExpression(selectedDates) {
   checkGoesLeft();
   const naturalExpressionYearOfBirth = calculateYear(selectedDates);
   const monthOfBirth = selectedDates[0].getMonth();
-  const allResults = findPrimaryNumberAndTypeObjectReturn(genderChosen, naturalExpressionYearOfBirth, monthOfBirth);
+  const allResults = tempMegaFunction(genderChosen, naturalExpressionYearOfBirth, monthOfBirth);
   increaseUseCounter();
   outputToDOM(allResults);
 }
