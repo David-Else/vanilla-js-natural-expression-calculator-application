@@ -2696,19 +2696,28 @@ const genderBox = document.getElementById('js-gender-box');
 //
 // Output the information to the DOM
 //
-function outputToDOM(thingsToPrint) {
+
+function outputToDOM({
+  primaryNumber,
+  typeOfExpression,
+  secondNumber,
+  duality,
+  complexity,
+  thirdNumber,
+  text,
+}) {
   document.getElementById('attemps-left').innerHTML = localStorage.triesLeft;
   document.getElementById('results').innerHTML = `
   <p>(Your number of goes using this app are <strong>${localStorage.triesLeft}</strong>)</p>
   <p>Your gender is <strong>${genderChosen}</strong></p>
-  <p>Your Expression is <strong>${thingsToPrint.typeOfExpression}</strong></p>
-  <p>You are <strong>${thingsToPrint.duality}</strong></p>
-  <p>You are a <strong>${thingsToPrint.complexity}</strong> Expression</p>
-  <p>Your primary number is <strong>${thingsToPrint.primaryNumber}</strong></p>
-  <p>Your second number is <strong>${thingsToPrint.secondNumber}</strong></p>    
+  <p>Your Expression is <strong>${typeOfExpression}</strong></p>
+  <p>You are <strong>${duality}</strong></p>
+  <p>You are a <strong>${complexity}</strong> Expression</p>
+  <p>Your primary number is <strong>${primaryNumber}</strong></p>
+  <p>Your second number is <strong>${secondNumber}</strong></p>    
   <h3>Your 9-Energy Natural Expression is:</h3>
-  <h2><strong>${thingsToPrint.primaryNumber}-${thingsToPrint.secondNumber}-${thingsToPrint.thirdNumber}</strong></h2>
-  <p><strong>"${thingsToPrint.text}"</strong></p>`;
+  <h2><strong>${primaryNumber}-${secondNumber}-${thirdNumber}</strong></h2>
+  <p><strong>"${text}"</strong></p>`;
 }
 
 //
