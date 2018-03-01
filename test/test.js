@@ -1,21 +1,44 @@
 /* eslint-disable */
 
-// old code needed for jsdom, don't forget it!
-// document.body.innerHTML = '<!DOCTYPE html><html><head></head><body><div id="js-gender-box"><input id="demo" placeholder="Select date" data-alt-input=true data-alt-format="F j, Y"><div id="results"></div></div></body></html>'
+// import {
+//   assert,
+// } from 'chai';
+
+// ------------------------------------------------------------------------
+//
+// YOUR DREAM way of making it work with quokka goodness
+//
+// import {
+//   assert,
+// } from 'chai';
+
+// import assert from '../test/assert.js';
+// console.log(assert.deepEqual);
+
+// const assert = require('chai').assert;
+
+// assert.deepEqual(findPrimaryAndType(2015, 'F'), {
+//   primaryNumber: 3,
+//   typeOfExpression: 'Thunder',
+// }, 'fail');
+
+// ------------------------------------------------------------------------
 
 var assert = chai.assert;
 
-// examples to delete
-
 describe('findPrimaryNumber(gender, naturalExpressionYearOfBirth)', function () {
-  it(`findPrimaryNumber('F', 2015) should return 3`, function () {
-    assert.equal(findPrimaryNumber('F', 2015), 3)
-
+  it(`findPrimaryAndType(2015, 'F') should return {primaryNumber: 3, typeOfExpression: 'Thunder'}`, function () {
+    assert.deepEqual(findPrimaryAndType(2015, 'F'), {
+      primaryNumber: 3,
+      typeOfExpression: 'Thunder',
+    })
   })
 })
 
-describe('findSecondNumber(gender, primaryNumber, monthOfBirth)', () => {
-  it(`findSecondNumber('M', 1, 1) should return 8`, () => {
-    assert.equal(findSecondNumber('M', 1, 1), 8)
-  });
-});
+// Don't delete, decent test
+
+// describe('findSecondaryNumber(primaryAndType, gender, monthOfBirth)', () => {
+//   it(`findSecondaryNumber('M', 1, 1) should return 8`, () => {
+//     assert.equal(findSecondaryNumber('M', 1, 1), 8)
+//   });
+// });
