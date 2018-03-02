@@ -26,7 +26,7 @@
 
 var assert = chai.assert;
 
-describe('findPrimaryNumber(gender, naturalExpressionYearOfBirth)', function () {
+describe('findPrimaryAndType(naturalExpressionYearOfBirth, gender)', function () {
   it(`findPrimaryAndType(2015, 'F') should return {primaryNumber: 3, typeOfExpression: 'Thunder'}`, function () {
     assert.deepEqual(findPrimaryAndType(2015, 'F'), {
       primaryNumber: 3,
@@ -35,10 +35,9 @@ describe('findPrimaryNumber(gender, naturalExpressionYearOfBirth)', function () 
   })
 })
 
-// Don't delete, decent test
+describe('findSecondaryNumber(primaryNumber, gender, monthOfBirth)', function () {
+  it(`findSecondaryNumber(1, 'M', 1) should return 8`, function () {
+    assert.equal(findSecondaryNumber(1, 'M', 1), 8)
+  })
+})
 
-// describe('findSecondaryNumber(primaryAndType, gender, monthOfBirth)', () => {
-//   it(`findSecondaryNumber('M', 1, 1) should return 8`, () => {
-//     assert.equal(findSecondaryNumber('M', 1, 1), 8)
-//   });
-// });
