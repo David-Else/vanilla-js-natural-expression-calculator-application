@@ -2689,49 +2689,40 @@ const thirdNumberArray = [
 
 // @ts-check
 
-console.log(Array.isArray(primaryNumberFemales));
-
 let genderChosen;
 const genderBox = document.getElementById('js-gender-box');
 
-//
-// Output the information to the DOM
-//
 /**
  * Output the information to the DOM
- * ---------------------------------
- * @param {Object} obj
- * @param {number} obj.primaryNumber
- * @param {number} obj.typeOfExpression
- * 
+ *
+ * @param {Object} results
+ * @param {number} results.primaryNumber
+ * @param {string} results.typeOfExpression
+ * @param {number} results.secondNumber
+ * @param {string} results.duality
+ * @param {string} results.complexity
+ * @param {number} results.thirdNumber
+ * @param {string} results.text
  */
-function outputToDOM({
-  primaryNumber,
-  typeOfExpression,
-  secondNumber,
-  duality,
-  complexity,
-  thirdNumber,
-  text,
-}) {
+function outputToDOM(results) {
   document.getElementById('attemps-left').innerHTML = localStorage.triesLeft;
   document.getElementById('results').innerHTML = `
   <p>(Your number of goes using this app are <strong>${localStorage.triesLeft}</strong>)</p>
   <p>Your gender is <strong>${genderChosen}</strong></p>
-  <p>Your Expression is <strong>${typeOfExpression}</strong></p>
-  <p>You are <strong>${duality}</strong></p>
-  <p>You are a <strong>${complexity}</strong> Expression</p>
-  <p>Your primary number is <strong>${primaryNumber}</strong></p>
-  <p>Your second number is <strong>${secondNumber}</strong></p>    
+  <p>Your Expression is <strong>${results.typeOfExpression}</strong></p>
+  <p>You are <strong>${results.duality}</strong></p>
+  <p>You are a <strong>${results.complexity}</strong> Expression</p>
+  <p>Your primary number is <strong>${results.primaryNumber}</strong></p>
+  <p>Your second number is <strong>${results.secondNumber}</strong></p>    
   <h3>Your 9-Energy Natural Expression is:</h3>
-  <h2><strong>${primaryNumber}-${secondNumber}-${thirdNumber}</strong></h2>
-  <p><strong>"${text}"</strong></p>`;
+  <h2><strong>${results.primaryNumber}-${results.secondNumber}-${results.thirdNumber}</strong></h2>
+  <p><strong>"${results.text}"</strong></p>`;
 }
 
 /**
  * Translate the actual chosen year to the special natural expression year
- * -----------------------------------------------------------------------
- * @param {object} selectedDates An array from flatpickr
+ *
+ * @param {array} selectedDates An array from flatpickr
  * @return {number} The special natural expression year
  */
 function calculateYear(selectedDates) {
@@ -2744,10 +2735,10 @@ function calculateYear(selectedDates) {
 
 /**
  * Find the primary number and type of expression
- * ----------------------------------------------
+ *
  * @param {number} naturalExpressionYearOfBirth
  * @param {string} gender
- * @return {object} Both the primary number and type of expression
+ * @return {Object} Both the primary number and type of expression
  */
 function findPrimaryAndType(naturalExpressionYearOfBirth, gender) {
   const includesYearOfBirth = element => element.year.includes(naturalExpressionYearOfBirth);
@@ -2762,7 +2753,7 @@ function findPrimaryAndType(naturalExpressionYearOfBirth, gender) {
 
 /**
  * Find the secondary number
- * -------------------------
+ *
  * @param {number} primaryNumber
  * @param {string} gender
  * @param {number} monthOfBirth
@@ -2782,10 +2773,10 @@ function findSecondaryNumber(primaryNumber, gender, monthOfBirth) {
 
 /**
  * Find the duality and complexity
- * -------------------------------
+ *
  * @param {number} primaryNumber
  * @param {string} gender
- * @return {object} Both the duality and complexity
+ * @return {Object} Both the duality and complexity
  */
 function findDualityAndComplexity(primaryNumber, gender) {
   const isPrimaryNumber = element => element.number === primaryNumber;
@@ -2800,10 +2791,10 @@ function findDualityAndComplexity(primaryNumber, gender) {
 
 /**
  * Find the third number and text
- * ------------------------------
+ *
  * @param {number} secondNumber
  * @param {number} primaryNumber
- * @return {object} Both the third number and text
+ * @return {Object} Both the third number and text
  */
 function findThirdNumberAndText(secondNumber, primaryNumber) {
   let secondNumberIndex = secondNumber;
@@ -2840,8 +2831,8 @@ function increaseUseCounter() {
 
 /**
  * When date is selected and a gender has been chosen this function is executed
- * ----------------------------------------------------------------------------
- * @param {object} selectedDates an array from flatpickr
+ *
+ * @param {array} selectedDates an array from flatpickr
  */
 function calculateNaturalExpression(selectedDates) {
   checkGoesLeft();
