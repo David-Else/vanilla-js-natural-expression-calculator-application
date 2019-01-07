@@ -19,13 +19,13 @@
         </div>
 
         <h1>Tell me my 9-Energy Natural Expression!</h1>
-        <p>You have <span id="attemps-left">3</span> attempts left</p>
+        <p>You have <span id="attemps-left"></span> uses left</p>
         <!-- <button id="test-mask">(click to preview over use)</button> -->
 
         <h3>1. Please select gender</h3>
-        <div id="js-gender-box" class="natural-expression-generator__gender-box natural-expression-generator__gender-box--color">Click here to choose your gender</div>
+        <div id="js-gender-box" data-uses="4" class="natural-expression-generator__gender-box natural-expression-generator__gender-box--color">Click here to choose your gender</div>
         <h3>2. Please select date of birth</h3>
-        <p>(You can click on year of birth and type directly)</p>
+        <p>(You can click on year and type directly)</p>
         <input id="flatpickr" placeholder="Select date" data-alt-input=true data-alt-format="F j, Y">
         <div id="results"></div>
     </article>

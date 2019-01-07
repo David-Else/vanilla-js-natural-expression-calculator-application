@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Natural Expression Calculator RC1
+Plugin Name: Natural Expression Calculator
 Plugin URI: https://www.elsewebdevelopment.com/
 Description: App For Natural Expression Calculation
-Version: 1.0 RC1
+Version: 1.0
 Author: David Else
 Author URI: https://www.elsewebdevelopment.com/
 */
