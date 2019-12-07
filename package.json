@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --reporter min --require esm --require ./setup-jsdom.js",
+    "test-karma": "karma start --single-run --browsers ChromeHeadless karma.conf.js",
     "build": "rollup -c",
     "watch": "rollup -c --watch"
   },
@@ -15,17 +16,23 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^9.4.4",
+    "@types/jsdom": "^12.2.4",
+    "autoprefixer": "^9.7.3",
     "chai": "^4.2.0",
     "doiuse": "^4.2.0",
-    "mocha": "^5.2.0",
-    "rollup": "^1.0.2",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-resolve": "^4.0.0",
-    "rollup-plugin-postcss": "^1.6.3",
+    "esm": "^3.2.25",
+    "jsdom": "^15.2.1",
+    "karma": "^4.4.1",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-mocha": "^1.3.0",
+    "mocha": "^6.2.2",
+    "rollup": "^1.27.8",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-postcss": "^2.0.3",
     "uglify-es": "^3.3.9"
   },
   "dependencies": {
-    "flatpickr": "^4.5.2"
+    "flatpickr": "^4.6.3"
   }
 }
