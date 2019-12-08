@@ -10,7 +10,15 @@ import {
   findSecondaryNumber,
   findThirdNumberAndText
 } from "./core-logic";
-import { genderBox, outputToDOM } from "./view";
+import {
+  genderBox,
+  outputResults,
+  changeDisplayProperty,
+  outputAttempsLeft,
+  initGenderBox,
+  switchGenderBoxFemale,
+  setGenderBoxMale
+} from "./view";
 
 let genderChosen;
 
@@ -18,22 +26,15 @@ let genderChosen;
  * Set the number of goes allowed from a HTML dataset value
  * only when the application is first run
  */
-
-const allowedGoes = genderBox.dataset.uses;
 if (localStorage.triesLeft === undefined) {
-  localStorage.triesLeft = allowedGoes;
+  localStorage.triesLeft = genderBox.dataset.uses;
 }
 
-/*
- * Write to the DOM
- */
-document.getElementById("attemps-left").innerHTML = localStorage.triesLeft;
+outputAttempsLeft();
 
 function checkGoesLeft() {
   if (localStorage.triesLeft < 1) {
-    document.getElementById(
-      "natural-expression-generator--mask"
-    ).style.display = "block";
+    changeDisplayProperty("natural-expression-generator--mask", "block");
   }
 }
 
@@ -67,7 +68,7 @@ function calculateNaturalExpression(selectedDates) {
     secondNumber,
     primaryNumber
   );
-  outputToDOM({
+  outputResults({
     primaryNumber,
     typeOfExpression,
     secondNumber,
@@ -90,30 +91,15 @@ function toggleGenderBox() {
   switch (genderChosen) {
     case undefined:
       genderChosen = "M";
-      genderBox.textContent = "Male";
-      genderBox.classList.add(
-        "natural-expression-generator__gender-box--color-male"
-      );
+      initGenderBox();
       break;
     case "M":
       genderChosen = "F";
-      genderBox.textContent = "Female";
-      genderBox.classList.remove(
-        "natural-expression-generator__gender-box--color-male"
-      );
-      genderBox.classList.add(
-        "natural-expression-generator__gender-box--color-female"
-      );
+      switchGenderBoxFemale();
       break;
     case "F":
       genderChosen = "M";
-      genderBox.textContent = "Male";
-      genderBox.classList.remove(
-        "natural-expression-generator__gender-box--color-female"
-      );
-      genderBox.classList.add(
-        "natural-expression-generator__gender-box--color-male"
-      );
+      setGenderBoxMale();
       break;
     default:
       break;

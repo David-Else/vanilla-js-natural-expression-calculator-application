@@ -1,7 +1,48 @@
+/*
+ * Read from the DOM
+ */
 export const genderBox = document.getElementById("js-gender-box");
 
-export function outputToDOM(results) {
+/*
+ * Write to the DOM
+ */
+export function changeDisplayProperty(elementId, value) {
+  document.getElementById(elementId).style.display = value;
+}
+
+export function outputAttempsLeft() {
   document.getElementById("attemps-left").innerHTML = localStorage.triesLeft;
+}
+
+export function setGenderBoxMale() {
+  genderBox.textContent = "Male";
+  genderBox.classList.remove(
+    "natural-expression-generator__gender-box--color-female"
+  );
+  genderBox.classList.add(
+    "natural-expression-generator__gender-box--color-male"
+  );
+}
+
+export function switchGenderBoxFemale() {
+  genderBox.textContent = "Female";
+  genderBox.classList.remove(
+    "natural-expression-generator__gender-box--color-male"
+  );
+  genderBox.classList.add(
+    "natural-expression-generator__gender-box--color-female"
+  );
+}
+
+export function initGenderBox() {
+  genderBox.textContent = "Male";
+  genderBox.classList.add(
+    "natural-expression-generator__gender-box--color-male"
+  );
+}
+
+export function outputResults(results) {
+  outputAttempsLeft();
   document.getElementById("results").innerHTML = `
   <p>Your Expression is <strong>${results.typeOfExpression}</strong></p>
   <p>You are <strong>${results.duality}</strong></p>

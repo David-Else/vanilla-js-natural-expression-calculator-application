@@ -1,7 +1,9 @@
+// @ts-ignore
 import {
   assertEquals,
   assertStrictEq
 } from "https://deno.land/std/testing/asserts.ts";
+// @ts-ignore
 import { test } from "https://deno.land/std/testing/mod.ts";
 import { findPrimaryAndType, findSecondaryNumber } from "../src/core-logic.js";
 
