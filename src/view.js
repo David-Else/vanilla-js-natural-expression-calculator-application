@@ -1,3 +1,5 @@
+const genderBoxClassColor = `natural-expression-generator__gender-box--color-`;
+
 /*
  * Read from the DOM
  */
@@ -10,35 +12,55 @@ export function changeDisplayProperty(elementId, value) {
   document.getElementById(elementId).style.display = value;
 }
 
-export function outputAttempsLeft() {
-  document.getElementById("attemps-left").innerHTML = localStorage.triesLeft;
-}
+// test
+// https://ultimatecourses.com/blog/stop-toggling-classes-with-js-use-behaviour-driven-dom-manipulation-with-data-states
 
+// .nav ul[data-state=closed] {
+//   display: none;
+// }
+// .nav ul[data-state=open] {
+//   display: inherit;
+// }
+
+// var toggleState = function(elem, one, two) {
+//   var elem = document.querySelector(elem);
+//   elem.setAttribute(
+//     "data-state",
+//     elem.getAttribute("data-state") === one ? two : one
+//   );
+//   console.log(elem.getAttribute("data-state"));
+// };
+
+// genderBox.onclick = function(e) {
+//   toggleState(
+//     `.natural-expression-generator__gender-box--color-female`,
+//     "closed",
+//     "open"
+//   );
+//   e.preventDefault();
+// };
+///
+
+// OR just use toggle? or have i been through all that...
 export function setGenderBoxMale() {
   genderBox.textContent = "Male";
-  genderBox.classList.remove(
-    "natural-expression-generator__gender-box--color-female"
-  );
-  genderBox.classList.add(
-    "natural-expression-generator__gender-box--color-male"
-  );
+  genderBox.classList.remove(`${genderBoxClassColor}female`);
+  genderBox.classList.add(`${genderBoxClassColor}male`);
 }
 
 export function switchGenderBoxFemale() {
   genderBox.textContent = "Female";
-  genderBox.classList.remove(
-    "natural-expression-generator__gender-box--color-male"
-  );
-  genderBox.classList.add(
-    "natural-expression-generator__gender-box--color-female"
-  );
+  genderBox.classList.remove(`${genderBoxClassColor}male`);
+  genderBox.classList.add(`${genderBoxClassColor}female`);
 }
 
 export function initGenderBox() {
   genderBox.textContent = "Male";
-  genderBox.classList.add(
-    "natural-expression-generator__gender-box--color-male"
-  );
+  genderBox.classList.add(`${genderBoxClassColor}male`);
+}
+
+export function outputAttempsLeft() {
+  document.getElementById("attemps-left").innerHTML = localStorage.triesLeft;
 }
 
 export function outputResults(results) {

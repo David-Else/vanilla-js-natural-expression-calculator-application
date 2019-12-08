@@ -20,30 +20,34 @@ import {
   setGenderBoxMale
 } from "./view";
 
+/*
+ * Globals
+ */
+
 let genderChosen;
 
 /*
- * Set the number of goes allowed from a HTML dataset value
- * only when the application is first run
+ * Local Storage
  */
+// localStorage.triesLeft = 100;
 if (localStorage.triesLeft === undefined) {
   localStorage.triesLeft = genderBox.dataset.uses;
-}
-
-outputAttempsLeft();
-
-function checkGoesLeft() {
-  if (localStorage.triesLeft < 1) {
-    changeDisplayProperty("natural-expression-generator--mask", "block");
-  }
 }
 
 function IncreaseUseCounter() {
   localStorage.triesLeft = Number(localStorage.triesLeft) - 1;
 }
 
-/**
- * @param {Date[]} selectedDates
+function checkGoesLeft() {
+  if (localStorage.triesLeft < 1) {
+    changeDisplayProperty("natural-expression-generator--mask", "block");
+  } else {
+    outputAttempsLeft();
+  }
+}
+
+/*
+ * Calculate Natural Expression
  */
 function calculateNaturalExpression(selectedDates) {
   const selectedDate = selectedDates[0];
@@ -79,6 +83,9 @@ function calculateNaturalExpression(selectedDates) {
   });
 }
 
+/*
+ * Wait for date to be selected, if gender also selected run calculation
+ */
 const fp = flatpickr("#flatpickr", {
   onChange(selectedDates) {
     if (genderChosen !== undefined) {
