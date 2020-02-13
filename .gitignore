@@ -1,6 +1,5 @@
 # everything in following directories
 
+dist
 node_modules/*
 .vscode/*
-
-
