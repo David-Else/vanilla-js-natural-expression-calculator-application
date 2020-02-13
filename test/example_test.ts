@@ -2,33 +2,36 @@
 import {
   assertEquals,
   assertStrictEq
-} from "https://deno.land/std/testing/asserts.ts";
+} from 'https://deno.land/std/testing/asserts.ts';
 // @ts-ignore
-import { test } from "https://deno.land/std/testing/mod.ts";
-import { findPrimaryAndType, findSecondaryNumber } from "../src/core-logic.js";
+import { test } from 'https://deno.land/std/testing/mod.ts';
+import {
+  findPrimaryAndType,
+  RemovedOrModifiedRules
+} from '../src/calculate.js';
 
 test({
-  name: "findPrimaryAndType()",
+  name: 'findPrimaryAndType()',
   fn(): void {
     // Arrange
     const year = 2015;
-    const gender = "F";
+    const gender = 'F';
     // Act
     const result = findPrimaryAndType(year, gender);
     // Assert
     assertEquals(result, {
       primaryNumber: 3,
-      typeOfExpression: "Thunder"
+      typeOfExpression: 'Thunder'
     });
   }
 });
 
 test({
-  name: "findSecondaryNumber()",
+  name: 'findSecondaryNumber()',
   fn(): void {
     // Arrange
     const primaryNumber = 1;
-    const gender = "M";
+    const gender = 'M';
     const monthOfBirth = 1;
     // Act
     const result = findSecondaryNumber(primaryNumber, gender, monthOfBirth);
