@@ -1,5 +1,7 @@
 # everything in following directories
 
 dist
+pnpm-lock.yaml
+.eslintcache
 node_modules/*
 .vscode/*
