@@ -1,15 +1,15 @@
 // @ts-check
 
-import flatpickr from "flatpickr";
-import "../node_modules/flatpickr/dist/flatpickr.css";
-import "../src/main.css";
+import flatpickr from 'flatpickr';
+import '../node_modules/flatpickr/dist/flatpickr.css';
+import '../src/main.css';
 import {
   calculateYear,
   findDualityAndComplexity,
   findPrimaryAndType,
   findSecondaryNumber,
   findThirdNumberAndText
-} from "./core-logic";
+} from './core-logic';
 import {
   genderBox,
   outputResults,
@@ -18,7 +18,7 @@ import {
   initGenderBox,
   switchGenderBoxFemale,
   setGenderBoxMale
-} from "./view";
+} from './view';
 
 /*
  * Globals
@@ -40,7 +40,7 @@ function IncreaseUseCounter() {
 
 function checkGoesLeft() {
   if (localStorage.triesLeft < 1) {
-    changeDisplayProperty("natural-expression-generator--mask", "block");
+    changeDisplayProperty('natural-expression-generator--mask', 'block');
   } else {
     outputAttempsLeft();
   }
@@ -86,7 +86,7 @@ function calculateNaturalExpression(selectedDates) {
 /*
  * Wait for date to be selected, if gender also selected run calculation
  */
-const fp = flatpickr("#flatpickr", {
+const fp = flatpickr('#flatpickr', {
   onChange(selectedDates) {
     if (genderChosen !== undefined) {
       calculateNaturalExpression(selectedDates);
@@ -97,15 +97,15 @@ const fp = flatpickr("#flatpickr", {
 function toggleGenderBox() {
   switch (genderChosen) {
     case undefined:
-      genderChosen = "M";
+      genderChosen = 'M';
       initGenderBox();
       break;
-    case "M":
-      genderChosen = "F";
+    case 'M':
+      genderChosen = 'F';
       switchGenderBoxFemale();
       break;
-    case "F":
-      genderChosen = "M";
+    case 'F':
+      genderChosen = 'M';
       setGenderBoxMale();
       break;
     default:
@@ -118,6 +118,6 @@ function toggleGenderBox() {
   }
 }
 
-genderBox.addEventListener("click", toggleGenderBox, false);
+genderBox.addEventListener('click', toggleGenderBox, false);
 
 checkGoesLeft();
