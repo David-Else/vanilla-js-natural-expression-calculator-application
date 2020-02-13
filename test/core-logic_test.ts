@@ -1,14 +1,6 @@
-// @ts-ignore
-import {
-  assertEquals,
-  assertStrictEq
-} from 'https://deno.land/std/testing/asserts.ts';
-// @ts-ignore
-import { test } from 'https://deno.land/std/testing/mod.ts';
-import {
-  findPrimaryAndType,
-  RemovedOrModifiedRules
-} from '../src/calculate.js';
+import { assertEquals } from 'https://deno.land/std/testing/asserts.ts';
+import { test } from 'https://deno.land/std@v0.32.0/testing/mod.ts';
+import { findPrimaryAndType, findSecondaryNumber } from '../src/core-logic.js';
 
 test({
   name: 'findPrimaryAndType()',
@@ -39,12 +31,3 @@ test({
     assertEquals(result, 8);
   }
 });
-
-// test({
-//   name: "testing example",
-//   fn(): void {
-//     assertEquals("world", "world");
-//     assertEquals({ hello: "world" }, { hello: "world" });
-//     assertStrictEq({ hello: "world" }, { hello: "world" });
-//   }
-// });

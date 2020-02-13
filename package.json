@@ -7,8 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha --reporter min --require esm --require ./setup-jsdom.js",
-    "test-deno": "deno test test/ --allow-net",
+    "test-deno": "deno test test/ -A",
     "build": "rollup -c",
     "watch": "rollup -c --watch",
     "eslint": "eslint --cache --ext .js,.ts src/ test/",
@@ -18,18 +17,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/jsdom": "^12.2.4",
     "@typescript-eslint/eslint-plugin": "^2.12.0",
     "@typescript-eslint/parser": "^2.12.0",
     "autoprefixer": "^9.7.3",
-    "chai": "^4.2.0",
     "doiuse": "^4.2.0",
     "eslint": "^6.8.0",
     "eslint-plugin-functional": "^1.0.2",
-    "esm": "^3.2.25",
     "install": "^0.13.0",
-    "jsdom": "^15.2.1",
-    "mocha": "^6.2.2",
     "npm": "^6.13.4",
     "rollup": "^1.27.14",
     "rollup-plugin-commonjs": "^10.1.0",
