@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test-deno": "deno test test/ -A",
+    "test-deno": "deno test test/* -A",
     "build": "rollup -c",
     "watch": "rollup -c --watch",
     "eslint": "eslint --cache --ext .js,.ts src/ test/",
